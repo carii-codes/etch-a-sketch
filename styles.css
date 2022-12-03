@@ -1,6 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
 #grid {
-    display: grid;
-    grid-template-rows: 100px repeat(16, 1fr);
-    grid-column-gap: 0px;
-    background-color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#grid>div:nth-child(16n + 1) { 
+    width: 100% !important;
 }
