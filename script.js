@@ -32,8 +32,8 @@ let currentSize = default_size
     const grid = document.getElementById('grid')
 
     for (let i = 1; i < 257; i++) {
-    const square = document.createElement('div');
-    dispatchEvent.style.cssText = "border: 1px solid black; height: 25px; width: 25px";
-    square.appendChild(div);
+        const square = document.createElement('div');
+        square.style.cssText = "border: 1px solid black; height: 25px; width: 25px";
+        square.appendChild(div);
 }
    
