@@ -31,9 +31,29 @@ let currentSize = default_size
     const sizeSlider = document.getElementById('sizeSlider')
     const grid = document.getElementById('grid')
 
+    // Create grid 
     for (let i = 1; i < 257; i++) {
         const square = document.createElement('div');
         square.style.cssText = "border: 1px solid black; height: 25px; width: 25px";
         grid.appendChild(square);
-}
+};
+
+    // Update grid 
+    updateGrid = () => {
+        grid.innerHTML = "";
+        grid.style.setProperty(
+            "grid-template-columns", 
+            `repeat(${sizeValue.value}, 2fr)`
+        );
+        grid.style.setProperty(
+            "grid-template-rows", 
+            `repeat(${sizeValue.value}, 2fr)`
+        );
+        for (let i = 0; i < sizeValue.value * sizeValue.value; i++) {
+            const div = document.createElement("div");
+            div.classList.add("square");
+            grid.appendChild(div);
+        }
+        console.log(sizeValue.value);
+    };
    
