@@ -1,0 +1,6 @@
+#grid {
+    display: grid;
+    grid-template-rows: 100px repeat(16, 1fr);
+    grid-column-gap: 0px;
+    background-color: aliceblue;
+}
