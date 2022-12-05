@@ -32,10 +32,12 @@ let currentSize = default_size
     const grid = document.getElementById('grid')
 
     // Create grid 
+    createGrid = () => {
     for (let i = 1; i < 257; i++) {
         const square = document.createElement('div');
         square.style.cssText = "border: 1px solid black; height: 25px; width: 25px";
         grid.appendChild(square);
+    }
 };
 
     // Update grid 
@@ -56,4 +58,20 @@ let currentSize = default_size
         }
         console.log(sizeValue.value);
     };
-   
+   const square = document.querySelector("div");
+   square.addEventListener("mouseover", function(event) {
+    event.target.classList.replace("square", "color");
+   });
+
+   sizeValue.addEventListener("change", updateGrid); 
+
+   clearBtn.addEventListener("click", function() {
+    grid.innerHTML = "";
+    sizeValue.value = "";
+    grid.style.setProperty("grid-template-columns", `repeat(16, 2fr)`);
+    grid.style.setProperty("grid-template-rows", `repeat(16, 2fr)`);
+    createGrid();
+   });
+
+   createGrid();
+  
