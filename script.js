@@ -31,47 +31,61 @@ let currentSize = default_size
     const sizeSlider = document.getElementById('sizeSlider')
     const grid = document.getElementById('grid')
 
-    // Create grid 
-    createGrid = () => {
-    for (let i = 1; i < 257; i++) {
-        const square = document.createElement('div');
-        square.style.cssText = "border: 1px solid black; height: 25px; width: 25px";
-        grid.appendChild(square);
+    colorPicker.oninput = (e) => setNewColor(e.target.value)
+    colorBtn.onclick = () => setNewBtn('color')
+    rainbowBtn.onclick = () => setNewBtn('rainbow')
+    erasrerBtn.onclick = () => setNewBtn('eraser')
+    clearBtn.onclick = () => reloadGrid()
+    sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value)
+    sizeSlider.onchange = (e) => changeSize(e.target.value)
+
+    let mouseDown = false 
+    document.body.onmousedown = () => (mouseDown = true)
+    document.body.onmouseup = () => (mouseDown = false)
+
+    function changeSize(value) {
+        setNewSize(value)
+        updateSizeValue(value)
+        reloadGrid()
     }
-};
 
-    // Update grid 
-    updateGrid = () => {
-        grid.innerHTML = "";
-        grid.style.setProperty(
-            "grid-template-columns", 
-            `repeat(${sizeValue.value}, 2fr)`
-        );
-        grid.style.setProperty(
-            "grid-template-rows", 
-            `repeat(${sizeValue.value}, 2fr)`
-        );
-        for (let i = 0; i < sizeValue.value * sizeValue.value; i++) {
-            const div = document.createElement("div");
-            div.classList.add("square");
-            grid.appendChild(div);
+    function updateSizeValue(value) {
+        sizeValue.innerHTML = `${value} x ${value}`
+    }
+
+    function reloadGrid() {
+        clearGrid()
+        setupGrid(currentSize)
+    }
+
+    function clearGrid() {
+        grid.innerHTML = ''
+    }
+
+    function setupGrid(size) {
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+        grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
+    
+    for (let i = 0; i < size * size; i++) {
+        const gridElement = document.createElement('div')
+        gridElement.classList.add('grid-element')
+        gridElement.addEventListener('mouseover', changeColor)
+        gridElement.addEventListener('mousedown', changeColor)
+        grid.appendChild(gridElement)
+    }
+}
+
+    function changeColor(e) {
+        if (e.type === 'mouseover' && !mouseDown) return 
+        if (currentBtn === 'rainbow') {
+            const randomR = Math.floor(Math.random() * 256)
+            const randomG = Math.floor(Math.random() * 256)
+            const randomB = Math.floor(Math.random() * 256)
+            e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+        } else if (currentBtn === 'color') {
+            e.target.style.backgroundColor = currentColor 
+        }   else if (currentBtn === 'eraser') {
+            e.target.style.backgroundColor = '#fefefe'
         }
-        console.log(sizeValue.value);
-    };
-   const square = document.querySelector("div");
-   square.addEventListener("mouseover", function(event) {
-    event.target.classList.replace("square", "color");
-   });
-
-   sizeValue.addEventListener("change", updateGrid); 
-
-   clearBtn.addEventListener("click", function() {
-    grid.innerHTML = "";
-    sizeValue.value = "";
-    grid.style.setProperty("grid-template-columns", `repeat(16, 2fr)`);
-    grid.style.setProperty("grid-template-rows", `repeat(16, 2fr)`);
-    createGrid();
-   });
-
-   createGrid();
-  
+    }
+    
