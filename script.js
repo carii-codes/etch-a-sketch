@@ -1,5 +1,5 @@
 // Set default values 
-const default_color = '#000000'
+const default_color = '#333333'
 const default_btn = 'color' 
 const default_size = '16' 
 
@@ -88,4 +88,26 @@ let currentSize = default_size
             e.target.style.backgroundColor = '#fefefe'
         }
     }
-    
+
+    function activateBtn(newBtn) {
+        if (currentBtn === 'rainbow') {
+            rainbowBtn.classList.remove('active')
+        } else if (currentBtn === 'color') {
+            colorBtn.classList.remove('active')
+        } else if (currentBtn === 'eraser') {
+            erasrerBtn.classList.remove('active')
+        }
+
+        if (newBtn === 'rainbow') {
+            rainbowBtn.classList.add('active')
+        } else if (newBtn === 'color') {
+            colorBtn.classList.add('active')
+        } else if (newBtn === 'eraser') {
+            erasrerBtn.classList.add('active')
+        }
+    }
+
+    window.onload = () => {
+        setupGrid(default_size)
+        activateBtn(default_btn)
+    }
