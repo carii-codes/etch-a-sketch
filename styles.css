@@ -36,6 +36,35 @@ html {
     line-height: 1.2;
   }
 
+  button,
+input {
+  width: 100%;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+header {
+    padding: 30px 0;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 80px;
+  }
+
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
   #menu {
     display: flex;
   flex-direction: column;
