@@ -50,3 +50,13 @@ html {
     border: 1px solid var(--primary-dark);
     border-radius: 5px;
   }
+
+  button.active {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+  }
+
+  button,
+input[type='color'] {
+  transition: transform 0.1s ease-in-out;
+}
