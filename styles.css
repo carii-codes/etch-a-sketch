@@ -26,7 +26,7 @@ html {
   body {
     background-color: var(--primary-light);
     color: var(--primary-dark);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'averin', sans-serif;
     line-height: 1.6;
     /* footer support */
     margin-bottom: 100px;
@@ -113,3 +113,42 @@ input[type='color']:active {
     margin-top: -8px;
     background: var(--primary-dark);
   }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  @media (max-width: 1200px) {
+    #main {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 850px) {
+    #main {
+      gap: 50px;
+    }
+
+    #menu {
+        width: 150px;
+        gap: 16px;
+      }
+
+      #sizeValue {
+        margin-bottom: -4px;
+      }
+
+      .grid {
+        width: 400px;
+        height: 400px;
+      }
+    }
