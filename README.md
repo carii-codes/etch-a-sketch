@@ -1,1 +1,1 @@
-Will create an etch-a-sketch mixed with a sketchpad. 
+Etch-A-Sketch created using HTML, CSS and JavaScript 
